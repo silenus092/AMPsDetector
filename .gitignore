@@ -1,0 +1,8 @@
+.vscode
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+# Local History for Visual Studio Code
+.history
+*/__pycache__/
+Unirep/UniRep/64_weights
+datasets/AMPsNonAMPs_df.plk
