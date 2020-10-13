@@ -5,4 +5,7 @@
 .history
 */__pycache__/
 Unirep/UniRep/64_weights
+<<<<<<< HEAD
 datasets/AMPsNonAMPs_df.plk
+=======
+>>>>>>> c2753bb2ef3e2a574bf3c85e23722f218d5c4d5a
