@@ -1,0 +1,49 @@
+TubularLearner.II.1211x4._200.retrain =   train on seqeunce less than 200 aa with 1211 nodes x 4 layers
+TubularLearner.II._200.retrain = the best perforamnce out here    train on seqeunce less than 200 aa with 1211 nodes x 4 layers with optimizer QAhadam
+
+CustomCNN.RMSprop.512_1211.hdf5 = Optimizer RNSprop 
+def create_Modelbaseline():
+    x_input = Input(shape=(1900,1)) # n_timesteps, n_features
+    # Conv
+    conv = Conv1D(512, kernel_size=7, strides=1, padding='same', activation='relu')(x_input) 
+    conv = MaxPooling1D(pool_size=3)(conv)
+    conv = Conv1D(256, kernel_size=5, strides=1, padding='same', activation='relu')(conv) 
+    conv = MaxPooling1D(pool_size=2)(conv)
+
+    # Flatten NN
+    flat = Flatten()(conv)
+    
+    layer_3 = Dense(1211, activation='relu')(flat)
+    dropout_3 = Dropout(0.2)(layer_3)
+    layer_4 = Dense(1211, activation='relu')(dropout_3)
+    dropout_4 = Dropout(0.2)(layer_4)
+    x_output = Dense(1, activation='sigmoid', name='output_layer', kernel_regularizer=l2(0.0001))(dropout_4)
+
+    model = Model(inputs=x_input, outputs=x_output)
+    model.compile(optimizer="RMSprop", loss='binary_crossentropy', metrics=['accuracy'])
+    
+    return model
+    
+CustomCNN.512_1211.hdf5 = Optimizer Adam 
+def create_Modelbaseline():
+    x_input = Input(shape=(1900,1)) # n_timesteps, n_features
+    # Conv
+    #conv = Conv1D(512, kernel_size=7, strides=1, padding='same', activation='relu')(x_input) 
+    #conv = MaxPooling1D(pool_size=3)(conv)
+    conv = Conv1D(512, kernel_size=8, strides=1, padding='same', activation='relu')(x_input) 
+    conv = MaxPooling1D(pool_size=3)(conv)
+    conv = Conv1D(256, kernel_size=4, strides=1, padding='same', activation='relu')(conv) 
+    conv = MaxPooling1D(pool_size=2)(conv)
+   
+    # Flatten NN
+    flat = Flatten()(conv)
+    layer_3 = Dense(1211, activation='relu')(flat)
+    dropout_3 = Dropout(0.2)(layer_3)
+    layer_4 = Dense(1211, activation='relu')(dropout_3)
+    dropout_4 = Dropout(0.2)(layer_4)
+    x_output = Dense(1, activation='sigmoid', name='output_layer', kernel_regularizer=l2(0.0001))(dropout_4)
+
+    model = Model(inputs=x_input, outputs=x_output)
+    model.compile(optimizer="Adam", loss='binary_crossentropy', metrics=['accuracy'])
+    
+    return model
