@@ -1,5 +1,5 @@
 TubularLearner.II.1211x4._200.retrain =   train on seqeunce less than 200 aa with 1211 nodes x 4 layers
-TubularLearner.II._200.retrain = the best perforamnce out here    train on seqeunce less than 200 aa with 1211 nodes x 4 layers with optimizer QAhadam
+TubularLearner.II._200.retrain = the best perforamnce out here   train on seqeunce less than 200 aa with 1211 nodes x5 layers with optimizer QAhadam
 
 CustomCNN.RMSprop.512_1211.hdf5 = Optimizer RNSprop 
 def create_Modelbaseline():
@@ -47,3 +47,8 @@ def create_Modelbaseline():
     model.compile(optimizer="Adam", loss='binary_crossentropy', metrics=['accuracy'])
     
     return model
+    
+------
+ProtCNN.bestmodel.h5 =  CNN 256 * 2 - NN 1000  
+ProtCNN.512_1211X4.best.hdf5   =  CNN 512 * 2 - NN 1211 * 4 
+ProtCNN.1211.hdf5  =  CNN 128 * 2 - NN 1211 * 4 
