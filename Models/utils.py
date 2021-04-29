@@ -1,6 +1,6 @@
 #from keras import backend as K
 #K.set_value(model_ProtCNN.optimizer.learning_rate, 0.00001)
-
+import matplotlib.pyplot as plt
 def lr_schedule(epoch):
     
     lr = 1e-3

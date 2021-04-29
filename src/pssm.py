@@ -27,7 +27,7 @@ def convert_to20X20_(pssm , index_pattern):
     return result_df
 
 def get_pssm(m):
-    pwm = m.counts.normalize(pseudocounts=0.5)
+    pwm = m.counts.normalize(pseudocounts=0.05)
     pssm = pwm.log_odds()
     return pssm
 
