@@ -23,7 +23,7 @@ def convert_to20X20_(pssm , index_pattern):
     index = ['A','C','D','E','F','G','H','I','K','L','M','N','P','Q','R','S','T','V','W','Y'])
     for  char in char_code_list: # column
         for index, row in pssm_df.iterrows():
-            result_df.loc[index, char] += round(row[char],2)
+            result_df.loc[index, char] += round(row[char],4)
     return result_df
 
 def get_pssm(m):
