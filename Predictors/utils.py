@@ -49,6 +49,32 @@ def predict_withModel(path,to_dir,existing_result,model):
 
     print("Complete")
 
+
+def predictprob_withModel(path,to_dir,existing_result,model,threshold=0.5):
+    appended_pkl = []
+    for infile in glob.glob(path):  
+     #print("Read:",infile)
+        file_name = os.path.basename(infile)
+        result_path=to_dir+"/"+file_name.replace("pkl", "ML.pkl")
+        if result_path in existing_result :
+        # print("found then skip : " , result)
+            continue
+        else:
+            df = pd.read_pickle(infile)
+            ready_df =df[[ "reps"]]
+            
+            x= np.array(df['reps'].to_list())
+            predicted_proba = model.predict_proba(x)
+            _y = (predicted_proba [:,1] >= threshold).astype('int')
+            #_y = model.predict(X)
+            df.drop(columns=['reps'],inplace =True)
+            df['class'] = _y
+            #print("Save:",result_path)
+            df.to_pickle(result_path) 
+
+    print("Complete")    
+    
+
 def read_exists_result(path):
     existing_result = []
     for infile in glob.glob(path+"/*.pkl"):
